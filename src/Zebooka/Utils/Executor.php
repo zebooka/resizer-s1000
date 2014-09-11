@@ -1,6 +1,6 @@
 <?php
 
-namespace Zebooka\Resizer;
+namespace Zebooka\Utils;
 
 class Executor
 {

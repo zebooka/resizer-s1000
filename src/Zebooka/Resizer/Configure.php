@@ -14,15 +14,6 @@ use Zebooka\Utils\Cli\Parameters;
  * @property bool $recursive
  * @property array $from
  * @property string $to
- * @property bool $subDirectoriesStructure
- * @property bool $copy
- * @property bool $deleteDuplicates
- * @property null|string $author
- * @property array $cameras
- * @property array $tokensToAdd
- * @property array $tokensToDrop
- * @property bool $tokensDropUnknown
- * @property bool $compareExifs
  * @property null|string $executableName
  */
 class Configure
