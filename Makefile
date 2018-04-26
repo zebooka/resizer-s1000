@@ -1,5 +1,5 @@
 
-all: hooks imagick exiftool composer test install
+all: hooks imagick exiftool composer test install try
 
 hooks:
 	test ! -d .git || cp .git-pre-commit .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit
@@ -20,3 +20,6 @@ test:
 
 install:
 	./build-phar.php
+
+try:
+	./build/resizer-s1000.phar -h
