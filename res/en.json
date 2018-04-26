@@ -1,6 +1,7 @@
 {
-    "appName": "RESIZER S-1000 | version: {0} |",
-    "copyrightInfo": "(c) Copyright 2014, Anton Bondar <anton@zebooka.com> http://zebooka.com/soft/LICENSE/",
+    "appName": "RESIZER S-1000 | version: {0} | date: {1}",
+    "copyrightInfo": "(c) Copyright 2018, Anton Bondar <anton@zebooka.com> http://zebooka.com/soft/LICENSE/",
+    "createdDestinationDir": "Created directory ''{0}''.",
     "currentConfiguration": "CURRENT CONFIGURATION:",
     "parameters": "PARAMETERS:",
     "parameters/description/P_FROM": "Process images from this path. Can be used multiple times. All positioned parameters also parsed like this option. Usage dash '-' to read paths from STDIN.",
@@ -24,6 +25,6 @@
     "usage/parameterValue/from": "PATH",
     "usage/parameterValue/to": "PATH",
     "xBytesProcessed": "{0} processed.",
-    "xPhotosProcessed": "{0, plural, one {# image} other {# images}} processed.",
+    "xFilesProcessed": "{0, plural, one {# file} other {# files}} processed.",
     "z": "The End!"
 }

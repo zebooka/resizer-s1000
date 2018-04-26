@@ -1,6 +1,7 @@
 {
-    "appName": "RESIZER S-1000 | версия: {0} |",
-    "copyrightInfo": "(c) 2014, Антон Бондарь <anton@zebooka.com> http://zebooka.com/soft/LICENSE/",
+    "appName": "RESIZER S-1000 | версия: {0} | дата: {1}",
+    "copyrightInfo": "(c) 2018, Антон Бондарь <anton@zebooka.com> http://zebooka.com/soft/LICENSE/",
+    "createdDestinationDir": "Created directory ''{0}''.",
     "currentConfiguration": "ТЕКУЩАЯ КОНФИГУРАЦИЯ:",
     "parameters": "ПАРАМЕТРЫ:",
     "parameters/description/P_FROM": "Обработать изображения из этого пути (файл и/или директория; параметр повторяем). Все нумерованные параметры так же попадают в эту опцию. Используйте минус/дефис '-', чтобы считать список путей из потока STDIN.",
@@ -24,6 +25,6 @@
     "usage/parameterValue/from": "ПУТЬ",
     "usage/parameterValue/to": "ПУТЬ",
     "xBytesProcessed": "Обработано {0}.",
-    "xPhotosProcessed": "Обработано {0, plural, one {# изображение} many {# изображений} other {# изображения}}.",
+    "xFilesProcessed": "Обработано {0, plural, one {# изображение} many {# изображений} other {# изображения}}.",
     "z": "The End!"
 }

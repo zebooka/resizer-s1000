@@ -44,16 +44,14 @@ $translator = \Zebooka\Translator\TranslatorFactory::translator(__DIR__ . '/../r
 $version = trim(file_get_contents(__DIR__ . '/../res/VERSION'));
 $logger->addInfo($translator->translate('appName', array(VERSION, $version)));
 $logger->addInfo($translator->translate('copyrightInfo'));
+$view = new \Zebooka\Resizer\ConfigureView($configure, $translator, \Zebooka\Utils\Cli\Size::getTerminalWidth() ? : 80);
 
 if ($configure->help || 1 === count($_SERVER['argv'])) {
-    $view = new \Zebooka\Resizer\ConfigureView($configure, $translator, \Zebooka\Utils\Cli\Size::getTerminalWidth() ? : 80);
     $logger->addInfo($view->render());
     exit(0);
 } else {
-    $view = new \Zebooka\Resizer\ConfigureView($configure, $translator, \Zebooka\Utils\Cli\Size::getTerminalWidth() ?: 80);
     $logger->addInfo($view->renderConfiguration());
 }
-
 
 // processing
 //$processor = new \Zebooka\PD\Processor(

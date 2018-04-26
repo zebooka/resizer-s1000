@@ -29,6 +29,11 @@ class ConfigureView
             PHP_EOL;
     }
 
+    public function renderConfiguration()
+    {
+        return PHP_EOL . $this->currentConfiguration() . PHP_EOL;
+    }
+
     private function indent()
     {
         return '   ';
@@ -115,6 +120,11 @@ class ConfigureView
         );
     }
 
+    /**
+     * @param array $list
+     * @param $width
+     * @return array
+     */
     private function wrapAndPadList(array $list, $width)
     {
         return array_map(
@@ -158,6 +168,8 @@ class ConfigureView
             PHP_EOL,
             array_map(
                 function ($a, $b) use ($indent, $aPadString, $bPadString) {
+                    $a = is_array($a) ? $a : [];
+                    $b = is_array($b) ? $b : [];
                     $lines = max(count($a), count($b));
                     while (count($a) < $lines) {
                         $a[] = $aPadString;
