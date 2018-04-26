@@ -2,12 +2,20 @@
 
 namespace Zebooka\Resizer;
 
-class LoggerFactoryTest extends \PHPUnit_Framework_TestCase
+use Monolog\Logger;
+use PHPUnit\Framework\TestCase;
+
+class LoggerFactoryTest extends TestCase
 {
+    public function tearDown()
+    {
+        \Mockery::close();
+    }
+
     public function test_factory()
     {
-        $configure = \Mockery::mock('\\Zebooka\\Resizer\\Configure');
+        $configure = \Mockery::mock(Configure::class);
         $logger = LoggerFactory::logger($configure);
-        $this->assertInstanceOf('\\Monolog\\Logger', $logger);
+        $this->assertInstanceOf(Logger::class, $logger);
     }
 }

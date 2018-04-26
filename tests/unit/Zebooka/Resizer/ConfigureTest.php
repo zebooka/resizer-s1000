@@ -2,7 +2,9 @@
 
 namespace Zebooka\Resizer;
 
-class ConfigureTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class ConfigureTest extends TestCase
 {
     public function test_has_parameters_with_required_values()
     {
@@ -46,7 +48,7 @@ class ConfigureTest extends \PHPUnit_Framework_TestCase
 
     public function test_empty_configure()
     {
-        $configure = new Configure(array(), array());
+        $configure = new Configure(array());
         $this->assertNull($configure->executableName);
         $this->assertFalse($configure->help);
         $this->assertEquals(100, $configure->verboseLevel);
