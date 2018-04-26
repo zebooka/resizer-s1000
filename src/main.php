@@ -8,7 +8,7 @@ set_error_handler(
     }
 );
 set_exception_handler(
-    function (\Exception $e) {
+    function (\Throwable $e) {
         if (isset($GLOBALS['logger']) && $GLOBALS['logger'] instanceof \Monolog\Logger) {
             $GLOBALS['logger']->addCritical($e);
         } else {
@@ -28,18 +28,32 @@ $configure = new \Zebooka\Resizer\Configure($_SERVER['argv']);
 // setup logger
 $logger = \Zebooka\Resizer\LoggerFactory::logger($configure);
 
+// get locale
+$locale = 'en';
+foreach ([LC_ALL, LC_COLLATE, LC_CTYPE, LC_MESSAGES] as $lc) {
+    if (preg_match('/^([a-z]{2})(_|$)/i', setlocale($lc, 0))) {
+        $locale = setlocale($lc, 0);
+        break;
+    }
+}
+setlocale(LC_ALL, $locale);
+
 // translations
-$translator = \Zebooka\Translator\TranslatorFactory::translator(__DIR__ . '/../res', setlocale(LC_CTYPE, 0));
+$translator = \Zebooka\Translator\TranslatorFactory::translator(__DIR__ . '/../res', $locale);
 
 $version = trim(file_get_contents(__DIR__ . '/../res/VERSION'));
-$logger->addInfo($translator->translate('appName', array($version)));
+$logger->addInfo($translator->translate('appName', array(VERSION, $version)));
 $logger->addInfo($translator->translate('copyrightInfo'));
 
 if ($configure->help || 1 === count($_SERVER['argv'])) {
     $view = new \Zebooka\Resizer\ConfigureView($configure, $translator, \Zebooka\Utils\Cli\Size::getTerminalWidth() ? : 80);
     $logger->addInfo($view->render());
     exit(0);
+} else {
+    $view = new \Zebooka\Resizer\ConfigureView($configure, $translator, \Zebooka\Utils\Cli\Size::getTerminalWidth() ?: 80);
+    $logger->addInfo($view->renderConfiguration());
 }
+
 
 // processing
 //$processor = new \Zebooka\PD\Processor(
@@ -60,13 +74,14 @@ $i = 0;
 //    }
 //}
 
-$logger->addInfo($translator->translate('xPhotosProcessed', array($i)));
-//$logger->addInfo(
-//    $translator->translate(
-//        'xBytesProcessed',
-//        array(\Zebooka\Utils\Size::humanReadableSize($processor->bytesProcessed()))
-//    )
-//);
+
+$logger->addInfo($translator->translate('xFilesProcessed', array($i)));
+$logger->addInfo(
+    $translator->translate(
+        'xBytesProcessed',
+        array(\Zebooka\Utils\Size::humanReadableSize(12345))
+    )
+);
 $logger->addInfo(
     $translator->translate(
         'peakMemoryUsage',
